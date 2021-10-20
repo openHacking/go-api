@@ -2,9 +2,10 @@ module github.com/openHacking/api
 
 go 1.17
 
-replace github.com/openHacking/search => ../search
-
-require github.com/gin-gonic/gin v1.7.4
+require (
+	github.com/gin-gonic/gin v1.7.4
+	github.com/kljensen/snowball v0.6.0
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
