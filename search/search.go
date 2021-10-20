@@ -67,8 +67,10 @@ func SearchByText() {
 	log.Printf("Loaded %d documents in %v", len(docs), time.Since(start))
 
 	start = time.Now()
-	idx := make(index)
-	idx.add(docs)
+	
+	// idx := make(index)
+	// idx.add(docs)
+	idx := Indexed(docs)
 	log.Printf("Indexed %d documents in %v", len(docs), time.Since(start))
 
 	start = time.Now()
@@ -81,7 +83,12 @@ func SearchByText() {
 	}
 }
 
-// 最终方案-全兼容
+func Indexed(docs []document) index  {
+	idx := make(index)
+	idx.add(docs)
+	return idx
+}
+// The final solution-fully compatible
 // reference: https://tehub.com/a/44BceBfRK0
 func getCurrentAbPath() string {
 	dir := getCurrentAbPathByExecutable()
@@ -92,7 +99,7 @@ func getCurrentAbPath() string {
 	return dir
 }
 
-// 获取当前执行程序所在的绝对路径
+// Get the absolute path of the currently executing program
 func getCurrentAbPathByExecutable() string {
 	exePath, err := os.Executable()
 	if err != nil {
@@ -102,7 +109,7 @@ func getCurrentAbPathByExecutable() string {
 	return res
 }
 
-// 获取当前执行文件绝对路径（go run）
+// Get the absolute path of the current execution file (go run)
 func getCurrentAbPathByCaller() string {
 	var abPath string
 	_, filename, _, ok := runtime.Caller(0)
