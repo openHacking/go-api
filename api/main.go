@@ -1,13 +1,14 @@
 package main
 
 import (
-	"net/http"
 	"log"
+	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
 )
-func storeJsonFile()  {
+
+func storeJsonFile() {
 
 	start := time.Now()
 	posts := getPostsJson()
@@ -30,25 +31,25 @@ func searchText(c *gin.Context) {
 
 	matchedIDs := idx.search(q)
 
-	res := make([]Post,0,len(matchedIDs))
-	for _,id := range matchedIDs {
+	res := make([]Post, 0, len(matchedIDs))
+	for _, id := range matchedIDs {
 		post := posts[id]
-		res = append(res,post)
+		res = append(res, post)
 	}
 
 	log.Printf("Search found %d documents in %v", len(matchedIDs), time.Since(start))
 	// fmt.Println(q)
-	c.IndentedJSON(http.StatusOK,res)
+	c.IndentedJSON(http.StatusOK, res)
 }
 
 func main() {
 
 	storeJsonFile()
-	
+
 	router := gin.Default()
 
 	router.GET("/search", searchText)
-	router.Run("localhost:8081")
+	router.Run("0.0.0.0:8081")
 }
 
 ////////////////////////////
