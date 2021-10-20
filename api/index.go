@@ -100,7 +100,8 @@ func saveIndexedJson(idx index)  {
 
 func getIndexedJson() index  {
 	// Open our jsonFile
-	jsonFile, err := os.Open(getCurrentAbPathByCaller()+"/indexed.json")
+	jsonFile, err := os.Open("indexed.json")
+	// jsonFile, err := os.Open(getCurrentAbPathByCaller()+"/indexed.json")
 
 	// if we os.Open returns an error then handle it
 	if err != nil {

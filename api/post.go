@@ -23,7 +23,8 @@ reference : https://tutorialedge.net/golang/parsing-json-with-golang/#reading-an
 */
 func getPostsJson() []Post {
 	// Open our jsonFile
-	jsonFile, err := os.Open(getCurrentAbPathByCaller()+"/posts.json")
+	// jsonFile, err := os.Open(getCurrentAbPathByCaller()+"/posts.json")
+	jsonFile, err := os.Open("posts.json")
 
 	// if we os.Open returns an error then handle it
 	if err != nil {
