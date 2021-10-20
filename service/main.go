@@ -39,6 +39,15 @@ func postAlbums(c *gin.Context) {
 }
 
 func getAlbumByID(c *gin.Context) {
+
+	/*
+
+		id := c.Query("id") //Query the parameters spliced after the request URL
+
+		name := c.PostForm("name") //Query parameters from the form
+
+		uuid := c.Param("uuid") //Get the parameters in the URL
+	*/
 	id := c.Param("id")
 	for _, a := range albums {
 		if a.ID == id {
@@ -51,12 +60,33 @@ func getAlbumByID(c *gin.Context) {
 func main() {
 	router := gin.Default()
 
+	/*
+		test:
+
+		curl http://localhost:8080/albums \
+		--header "Content-Type: application/json" \
+		--request "GET"
+	*/
 	router.GET("/albums", getAlbums)
+
+	/*
+		test:
+
+		curl http://localhost:8080/albums/2
+	*/
 	router.GET("/albums/:id", getAlbumByID)
+
+	/*
+		test:
+
+		curl http://localhost:8080/albums \
+		--include \
+		--header "Content-Type: application/json" \
+		--request "POST" \
+		--data '{"id": "4","title": "The Modern Sound of Betty Carter","artist": "Betty Carter","price": 49.99}'
+	*/
 	router.POST("/albums", postAlbums)
 	router.Run("localhost:8080")
 }
-
-
 
 ////////////////////////////

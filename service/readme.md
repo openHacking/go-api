@@ -2,13 +2,13 @@
 
 ## command
 
-0. init
+1. init
 
 ```bash
 go mod init github.com/openHacking/service
 ```
 
-1. install module
+2. install module
 
 > get dependencies for code in the current directory
 
@@ -16,13 +16,13 @@ go mod init github.com/openHacking/service
 go get .
 ```
 
-2. run server
+3. run server
 
 ```bash
 go run .
 ```
 
-3. check the server api
+4. check the server api
 
 ```bash
 curl http://localhost:8080/albums

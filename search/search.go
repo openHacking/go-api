@@ -81,6 +81,9 @@ func SearchByText() {
 	}
 }
 
+func SearchByQuery(text string)  {
+	
+}
 // 最终方案-全兼容
 // reference: https://tehub.com/a/44BceBfRK0
 func getCurrentAbPath() string {
